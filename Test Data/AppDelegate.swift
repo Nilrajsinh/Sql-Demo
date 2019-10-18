@@ -12,9 +12,36 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
+     var dbPath = ""
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let docPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+               print(docPath)
+               
+               // MARK: - copy and attach file with xcode project
+               
+               self.dbPath = docPath + "/Tabe.db"
+               
+               
+               if(!FileManager.default.fileExists(atPath: self.dbPath))
+               {
+                   let bundleDBPath = Bundle.main.path(forResource: "Tabe", ofType: "db")
+                   
+                   do{
+                       try FileManager.default.copyItem(atPath: bundleDBPath!, toPath: self.dbPath)
+                   }
+                   catch(let err as NSError)
+                   {
+                       print(err.localizedDescription)
+                   }
+                   
+               }
+        
+        
+        
+        
+        
         return true
     }
 

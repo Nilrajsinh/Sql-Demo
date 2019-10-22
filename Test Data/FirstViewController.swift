@@ -52,7 +52,7 @@ class FirstViewController: UIViewController , UIPickerViewDelegate , UIPickerVie
                             }
                             else{
                                //to update
-                                cmd = "update Info set name = '\(Email.text!)' where id = \(Name.text!)"
+                                cmd = "update Info set name = '\(Email.text!)' where Id = \(Name.text!)"
                                 
                                 Name.text = ""
                                 Email.text = ""
@@ -68,6 +68,8 @@ class FirstViewController: UIViewController , UIPickerViewDelegate , UIPickerVie
                             else{
                                 print("Not Inserted")
                             }
+        
+        
       
 
     }

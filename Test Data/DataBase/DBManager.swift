@@ -13,10 +13,8 @@ class DBManager {
     
     private var dbObj:OpaquePointer?
     
-     init() {
-        
+    init() {
         self.dbLocation = (UIApplication.shared.delegate as! AppDelegate).dbPath
-        print(self.dbLocation)
     }
     
     //need to open connection with database
@@ -30,13 +28,11 @@ class DBManager {
     
     func Execute(SQLCommnad Command:String) -> Bool {
         var isDone = true
-       // Command = "insert into Info(Name,Course) values('q1','q1')"
+        
         if isOpen()
         {
             var stmt:OpaquePointer?
-            let c = sqlite3_prepare_v2(self.dbObj, Command, -1, &stmt, nil)
-            if
-            c == SQLITE_OK{
+            if sqlite3_prepare_v2(self.dbObj, Command, -1, &stmt, nil) == SQLITE_OK{
                 
                 sqlite3_step(stmt)
                 sqlite3_finalize(stmt)
